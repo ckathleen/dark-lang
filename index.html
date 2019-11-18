@@ -4,7 +4,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<style>
 		body {
-			background: white;
 			color: grey;
 			font-family: 'Roboto';
 			display: flex;
@@ -16,18 +15,32 @@
 			padding-top: 100px; 
 			font-weight: bold;
 			font-size:30px;
+			color: #ccc;
+		}
+		#question-box {
+			background: white;
+			color: grey;
+			padding: 15px;
+			border-radius: 10px;
+			box-shadow: rgba(0,0,0,0.8) 0 0 10px;
+			font-size: 14px;
+		}
+		#getColorBtn {
+			margin-top: 10px;
+			font-size: 14px;
 		}
 	</style>
 	</head>
 <body>
 	<div>
-		<p>What is 
+		<p id='question-box'>What is 
 			<select id='name-select'>
 				<option value='casey'>casey's</option>
 				<option value='sakib'>sakib's</option>
 				<option value='ethan'>ethan's</option>
-		</select> last name?</p>
-		<button onclick="getNameDarkLang()">Get Answer with DarkLang</button>
+			</select> favorite color? <br>
+			<button id='getColorBtn' onclick="getNameDarkLang()">Ask the DarkLang DB!</button>
+		</p>
 		<div id='answer'></div>
 	</div>
 </body>
@@ -41,15 +54,10 @@
     	first_name: first_name
     },
 		success: function(result){
-    		$('#answer').html(result.slice(1, result.length-1).toUpperCase());
+				let color = result.slice(1, result.length-1).toUpperCase()
+    		$('#answer').html(color);
+    		$('body').css('background-color', color)
   		}
   	})
 	}
-// function getNameDarkLang () {
-// 	$.ajax({url: "https://bessemervp.builtwithdark.com/get_my_last_name", 
-// 		success: function(result){
-//     		$("#answer").html(result.slice(1, result.length-1).toUpperCase());
-//   		}
-//   	})
-// }
 </script>
